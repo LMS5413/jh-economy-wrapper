@@ -13,10 +13,20 @@ module.exports = class Economy {
             user: user,
             database: db
         })
+        /*
+
+        Tenta uma conexão, mal sucedido ele retorna o erro
+
+        */
         this.con.connect((err) => {
             if (err) throw err
         })
     }
+        /*
+
+        Função com a propriedade .money
+        
+        */
     money(nick) {
         return new Promise(res => {
             this.con.query(`SELECT * FROM JH_Economy WHERE LowerCaseNick = '${nick.toLowerCase()}'`, function (error, results, fields) {
@@ -26,6 +36,11 @@ module.exports = class Economy {
             })
         })
     }
+        /*
+
+        Função com a propriedade .all
+        
+        */
     all(type) {
         return new Promise(res => {
             this.con.query(`SELECT * FROM JH_Economy`, function (error, results, fields) {
@@ -41,6 +56,11 @@ module.exports = class Economy {
             })
         })
     }
+           /*
+
+        Função com a propriedade .top
+        
+        */
     top() {
         return new Promise(res => {
             this.con.query(`SELECT * FROM JH_Economy`, function (error, results, fields) {
@@ -68,6 +88,11 @@ module.exports = class Economy {
         })
     })
     }
+            /*
+
+        Função com a propriedade .givecoins
+        
+        */
     givecoins(nick, coins) {
         if(typeof(nick) !== 'string') throw 'Você pode colocar apenas STRING!'
         if(typeof(coins) !== 'number') throw 'Você pode colocar apenas NUMBER!'
@@ -83,6 +108,11 @@ module.exports = class Economy {
         })
     })
     }
+        /*
+
+        Função com a propriedade .removecoins
+        
+        */
     removecoins(nick, coins) {
         if(typeof(nick) !== 'string') throw 'Você pode colocar apenas STRING!'
         if(typeof(coins) !== 'number') throw 'Você pode colocar apenas NUMBER!'
