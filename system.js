@@ -2,6 +2,9 @@ const mysql = require('mysql')
 const color = require('colors');
 module.exports = class Economy { 
     constructor(db, ip, user, passwd) {
+        if(typeof(db) !== 'string' || typeof(ip) !== 'string' || typeof(user) !== 'string' || typeof(passwd) !== 'string') {
+           return console.log(color.red(`Tem algo que não é string! \nDB: ${typeof(db) !== 'string' ? color.red('Não é string'):color.green('É uma string')} \nUSER: ${typeof(user) !== 'string' ? color.red('Não é string'):color.green('É uma string')}\nIP: ${typeof(ip) !== 'string' ? color.red('Não é string'):color.green('É uma string')}\nSENHA: ${typeof(passwd) !== 'string' ? color.red('Não é string'):color.green('É uma string')}`))
+        }
         /*
 
         Conexão com a MYSQL
@@ -13,20 +16,10 @@ module.exports = class Economy {
             user: user,
             database: db
         })
-        /*
-
-        Tenta uma conexão, mal sucedido ele retorna o erro
-
-        */
         this.con.connect((err) => {
             if (err) throw err
         })
     }
-        /*
-
-        Função com a propriedade .money
-        
-        */
     money(nick) {
         return new Promise(res => {
             this.con.query(`SELECT * FROM JH_Economy WHERE LowerCaseNick = '${nick.toLowerCase()}'`, function (error, results, fields) {
@@ -36,11 +29,6 @@ module.exports = class Economy {
             })
         })
     }
-        /*
-
-        Função com a propriedade .all
-        
-        */
     all(type) {
         return new Promise(res => {
             this.con.query(`SELECT * FROM JH_Economy`, function (error, results, fields) {
@@ -56,11 +44,6 @@ module.exports = class Economy {
             })
         })
     }
-           /*
-
-        Função com a propriedade .top
-        
-        */
     top() {
         return new Promise(res => {
             this.con.query(`SELECT * FROM JH_Economy`, function (error, results, fields) {
@@ -88,11 +71,6 @@ module.exports = class Economy {
         })
     })
     }
-            /*
-
-        Função com a propriedade .givecoins
-        
-        */
     givecoins(nick, coins) {
         if(typeof(nick) !== 'string') throw 'Você pode colocar apenas STRING!'
         if(typeof(coins) !== 'number') throw 'Você pode colocar apenas NUMBER!'
@@ -108,11 +86,6 @@ module.exports = class Economy {
         })
     })
     }
-        /*
-
-        Função com a propriedade .removecoins
-        
-        */
     removecoins(nick, coins) {
         if(typeof(nick) !== 'string') throw 'Você pode colocar apenas STRING!'
         if(typeof(coins) !== 'number') throw 'Você pode colocar apenas NUMBER!'
