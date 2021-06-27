@@ -10,4 +10,4 @@
     console.log(await money) //String
 })
 
-Documentation https://brleonardo790.gitbook.io/jh-economy-wrapper/
+# Documentation https://brleonardo790.gitbook.io/jh-economy-wrapper/
