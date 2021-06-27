@@ -1,8 +1,8 @@
 # jh-economy-wrapper
 
-#A simple wrapper for JH_Economy
+# A simple wrapper for JH_Economy
 
-#Usage
+# Usage
 
 ```javascript 
   econ = new econ('ip', 'username', 'passwd') //MYSQL Information
